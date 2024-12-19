@@ -52,8 +52,9 @@
 		D7A1837C2B9627EA0041C7DF /* MyDay */ = {
 			isa = PBXGroup;
 			children = (
-				D7A1837D2B9627EA0041C7DF /* MyDayApp.swift */,
-				D7A1837F2B9627EA0041C7DF /* ContentView.swift */,
+				D7A183952B9A8F5D0041C7DF /* ViewModel */,
+				D7A183942B9A8F340041C7DF /* View */,
+				D7A1838D2B9A04430041C7DF /* Model */,
 				D7A183812B9627ED0041C7DF /* Assets.xcassets */,
 				D7A183862B9627EE0041C7DF /* Info.plist */,
 				D7A183832B9627ED0041C7DF /* Preview Content */,
@@ -67,6 +68,29 @@
 				D7A183842B9627ED0041C7DF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D7A1838D2B9A04430041C7DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D7A183942B9A8F340041C7DF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D7A1837D2B9627EA0041C7DF /* MyDayApp.swift */,
+				D7A1837F2B9627EA0041C7DF /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D7A183952B9A8F5D0041C7DF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,17 +293,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MyDay/Preview Content\"";
+				DEVELOPMENT_TEAM = TQ6AKMAZ7M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MyDay/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = MykolaProject.MyDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -290,17 +319,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MyDay/Preview Content\"";
+				DEVELOPMENT_TEAM = TQ6AKMAZ7M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MyDay/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = MykolaProject.MyDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
