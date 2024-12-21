@@ -4,32 +4,25 @@
 //
 
 import SwiftUI
+import CoreData
 
-struct Task: Identifiable{
-    
-    let id = UUID()
-    var name: String
-    var isComplited: Bool = false
-    
-}
 
 
 struct ContentView: View {
     
-    @State private var tasks =
+    @Environment(\.managedObjectContext) private var viewContext
     
-    [Task(name:"Купити молоко"),
-     Task(name:"Прочитати книгу"),
-     Task(name:"Зробити зарядку")]
+    @FetchRequest(
+        entity: Task.entity(),
+        sortDescriptors:[NSSortDescriptor(keyPath: \Task.isCompleted, ascending: true)]
+    ) var tasks: FetchedResults<Task>
     
     var body: some View {
         
         NavigationView {
             VStack{
                 
-                Button(action:{
-                    tasks.append(Task(name: "New task") )
-                }) {
+                Button(action: addTask) {
                     Text("Add")
                         .frame(maxWidth: .infinity)
                         .padding()
@@ -40,22 +33,66 @@ struct ContentView: View {
                     
                 }
                 
-                List($tasks) {$task in
-                    HStack{
-                        Toggle(isOn: $task.isComplited, label: {
-                            TextField("Task name", text: $task.name)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .foregroundColor(task.isComplited ? .gray : .black)
-                                .strikethrough(task.isComplited, color: .gray)
+                List {
+                    ForEach(tasks) {task in
+                        HStack {
+                            Toggle(isOn: Binding(
+                                get: { task.isCompleted },
+                                set: { newValue in
+                                    task.isCompleted = newValue
+                                    saveContext()
+                                }
                                 
-                        })
+                            )) {
+                                TextField("Назва завдання", text: Binding(
+                                    get: { task.name ?? "" },
+                                    set: { newValue in
+                                        task.name = newValue
+                                        saveContext()
+                                    }
+                                ))
+                                .font(.body)
+                                .foregroundColor(task.isCompleted ? .gray : .primary)
+                                .strikethrough(task.isCompleted, color: .gray)
+                            }
+                        }
                     }
+                    .onDelete(perform: deleteTasks)
+                    
                 }
                 
             }.navigationTitle("Мої завдання")
         }
     }
+    
+    private func addTask (){
+        
+        let newTask = Task(context: viewContext)
+        newTask.id = UUID()
+        newTask.name = "New task"
+        newTask.isCompleted = false
+        saveContext()
+        
+    }
+    
+    private func saveContext(){
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Error: \(nsError)")
+        }
+    }
+    
+    private func deleteTasks(offsets: IndexSet){
+        
+        offsets.map { tasks[$0] }.forEach(viewContext.delete)
+        saveContext()
+        
+    }
 }
+
+
 
 
 struct ContentView_Previews: PreviewProvider {
