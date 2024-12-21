@@ -43,7 +43,8 @@ struct ContentView: View {
                 List($tasks) {$task in
                     HStack{
                         Toggle(isOn: $task.isComplited, label: {
-                            Text(task.name)
+                            TextField("Task name", text: $task.name)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .foregroundColor(task.isComplited ? .gray : .black)
                                 .strikethrough(task.isComplited, color: .gray)
                                 
